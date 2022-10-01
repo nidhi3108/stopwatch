@@ -41,11 +41,11 @@ startNode.addEventListener ("click",function(event){
 })
 
 //after clicking lap  save the current time below lap button
-lapNode.addEventListener("click",showLapTime)
+lapNode.addEventListener("click",showLapTime(secondNode))
 
-function showLapTime(event){
+function showLapTime(secondNode){
     // var currentTimeValueNode=document.getElementsByTagName("label")
     // console.log(currentTimeValueNode);
-    var value=secondNode.value;
+    var value=secondNode.innerHTML;
     console.log(value);
 }
