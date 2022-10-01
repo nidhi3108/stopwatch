@@ -46,6 +46,11 @@ lapNode.addEventListener("click",showLapTime)
 function showLapTime(event){
     // var currentTimeValueNode=document.getElementsByTagName("label")
     // console.log(currentTimeValueNode);
-    var value=secondNode.value;
-    console.log(value);
+    var second=secondNode.innerHTML;
+    var minute=minutesNode.innerHTML;
+    var hour=secondNode.innerHTML;      // hour dalo yha p
+    
+    console.log(event.target);
+
+    console.log(minute +':'+ second);
 }
