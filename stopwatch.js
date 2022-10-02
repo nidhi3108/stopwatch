@@ -53,6 +53,8 @@ function showLapTime(event){
 
     var eventValue=event.target.innerText;
     console.log(eventValue);
+    var eventcollection=event.target.parentNode.parentNode.children[3]
+    console.log(eventcollection);
     var hourValue=hourNode.innerHTML
     console.log(hourValue);
     var minuteValue=minutesNode.innerHTML
@@ -92,18 +94,20 @@ function showLapTime(event){
       laps.push(createLapText,createTimeText,horinzontalLine)
       console.log(laps);
     console.log(lapContainerNode);
-    resetAllLaps(eventValue,createLapText,createTimeText);
+    resetAllLaps(eventValue,lapboxlaptime,hrline,eventcollection,hourValue,minuteValue,secondValue);
     
 }
 
-function resetAllLaps(eventValue,createLapText,createTimeText){
+function resetAllLaps(eventValue,eventcollection,secondValue,hourValue,minuteValue){
         //  var lapNodeText=event.target;
          console.log(eventValue);
 
          if(eventValue==="Reset")
          {
-           laps=[];
-           console.log(laps);
+             secondValue.innerHTML="00"
+             hourValue.innerHTML="00"
+             minuteValue.innerHTML="00"
+            eventcollection.remove()
          }
 }
 
