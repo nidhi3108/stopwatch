@@ -7,13 +7,11 @@ var lapContainerNode=document.getElementsByClassName("lapContainer")
 // var hrlineNode=document.getElementById("hrline")
 // var lapBox1TextNode=document.getElementById("lapbox1")
 // var lapTime1TextNode=document.getElementById("laptime1")
-// var horinzontalLine=document.createElement("hr")
-// var createLapText=document.createElement("p")
-// var createTimeText=document.createElement("p")
+
 
 
 //global variable
-// var laps=[]
+var laps=[]
 var totalTime=0;
 var istimeron=false;
 var timerid;
@@ -27,6 +25,8 @@ startNode.addEventListener ("click",function(event){
         clearInterval(timerid)
         startNode.innerHTML="start"
         istimeron=false; 
+        lapNode.innerHTML="Reset"
+
     }
     else{
         //start watch
@@ -37,18 +37,22 @@ startNode.addEventListener ("click",function(event){
             secondNode.innerHTML=parseInt(totalTime%60)
         }, 1000);
         startNode.innerHTML="stop "
-        //    start.style.backgroundColor="green";
+        lapNode.innerHTML="Lap"
         istimeron=true;
     }
     
 })
 
+
+
 //after clicking lap  save the current time below lap button
 lapNode.addEventListener("click",showLapTime)
 
-function showLapTime(){
-    // var currentTimeValueNode=document.getElementsByTagName("label")
-    // console.log(currentTimeValueNode);
+
+function showLapTime(event){
+
+    var eventValue=event.target.innerText;
+    console.log(eventValue);
     var hourValue=hourNode.innerHTML
     console.log(hourValue);
     var minuteValue=minutesNode.innerHTML
@@ -60,39 +64,47 @@ function showLapTime(){
     
     var hrline=document.createElement("div")
     hrline.setAttribute("id","hrline")
-    lapContainerNode.appendChild(hrline)
+    lapContainerNode[0].appendChild(hrline)
+    var horinzontalLine=document.createElement("hr")
+    hrline.appendChild(horinzontalLine)
 
 
 
+    var lapboxlaptime=document.createElement("div")
+    lapboxlaptime.setAttribute("class","lapboxlaptime")
+    lapContainerNode[0].appendChild(lapboxlaptime)
 
 
+    var lapbox1=document.createElement("div")
+    lapbox1.setAttribute("id","lapbox1")
+    lapboxlaptime.appendChild(lapbox1)
+    var createLapText=document.createElement("p")
+    lapbox1.appendChild(createLapText)
+    createLapText.innerHTML="Lap1"
 
+    var laptime1=document.createElement("div")
+    laptime1.setAttribute("id","laptime1")
+    lapboxlaptime.appendChild(laptime1)
+    var createTimeText=document.createElement("p")
+    laptime1.appendChild(createTimeText)
+    createTimeText.innerHTML=`${currentTime}`
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // addAllLaps(currentTime);
+      laps.push(createLapText,createTimeText,horinzontalLine)
+      console.log(laps);
+    console.log(lapContainerNode);
+    resetAllLaps(eventValue,createLapText,createTimeText);
+    
 }
-// function addAllLaps(currentTime)
-// {
-//     hrlineNode.appendChild(horinzontalLine)
-//     lapBox1TextNode.appendChild(createLapText)
-//     createLapText.innerHTML="Lap1"
-//     lapTime1TextNode.appendChild(createTimeText)
-//     createTimeText.innerHTML=`${currentTime}`
-// }
+
+function resetAllLaps(eventValue,createLapText,createTimeText){
+        //  var lapNodeText=event.target;
+         console.log(eventValue);
+
+         if(eventValue==="Reset")
+         {
+           laps=[];
+           console.log(laps);
+         }
+}
+
+
